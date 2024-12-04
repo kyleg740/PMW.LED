@@ -1,0 +1,12 @@
+import time
+import board
+import pwmio
+from analogio import AnalogIn
+
+led = pwmio.PWMOut(board.D0, frequency=5000, duty_cycle=0)
+blew = AnalogIn(board.A1)
+
+while True:
+    for i in range(100):
+        if i < 50:
+            led.duty_cycle = int(i * 2 * blew.value / 100)  # Up
